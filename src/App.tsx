@@ -1,17 +1,19 @@
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
-import About from './components/About';
 import Projects from './components/Projects';
-import Contact from './components/Contact';
+import Accounts from './components/Accounts';
+import Footer from './components/Footer';
 
 function App() {
   return (
-    <div className="bg-white min-h-screen text-gray-900 font-sans selection:bg-blue-100">
+    <div className="min-h-screen bg-paper/60 text-ink">
       <Navbar />
-      <Hero />
-      <About />
-      <Projects />
-      <Contact />
+      <main>
+        <Hero />
+        <Projects />
+        <Accounts />
+      </main>
+      <Footer />
     </div>
   );
 }

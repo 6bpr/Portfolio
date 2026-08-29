@@ -1,70 +1,85 @@
-interface ProjectProps {
+import Reveal from './Reveal';
+
+interface Project {
   title: string;
   description: string;
-  tech: string;
+  tech: string[];
   github: string;
   live: string;
-  image: string;
 }
 
-import AnimeWiki from "../assets/anime-wiki.png";
-import PiratedLib from "../assets/pirated.png";
-import RecipeFinder from "../assets/recipe.png";
+const projects: Project[] = [
+  {
+    title: "anime-wiki",
+    description:
+      "A Wikipedia-style anime character encyclopedia built from scratch with a clean, searchable interface.",
+    tech: ["TS", "React", "Vite"],
+    github: "https://github.com/Prawaldev/anime-wiki",
+    live: "https://prawaldev.github.io/anime-wiki/",
+  },
+  {
+    title: "pirated-lib",
+    description:
+      "Curated index of sites and apps for Japanese media — anime, manga, and novels.",
+    tech: ["TS", "React", "Vite"],
+    github: "https://github.com/Prawaldev/pirated-lib",
+    live: "https://prawaldev.github.io/Pirated-Lib/",
+  },
+];
 
-const ProjectCard = ({ title, description, tech, github, live, image }: ProjectProps) => {
+const ProjectCard = ({ project, index }: { project: Project; index: number }) => {
   return (
-    <div className="border border-gray-200 rounded-lg overflow-hidden hover:border-gray-400 transition-colors">
-      <img src={image} alt={title} className="w-full bg-gray-100" />
-      <div className="p-6">
-        <h3 className="text-lg font-bold text-gray-900 mb-1">{title}</h3>
-        <p className="text-xs text-gray-500 mb-3">{tech}</p>
-        <p className="text-sm text-gray-600 mb-4">{description}</p>
-        <div className="flex space-x-3 text-xs">
-          <a href={github} target="_blank" className="text-blue-600 hover:text-black">GitHub</a>
-          <a href={live} target="_blank" className="text-blue-600 hover:text-black">Demo</a>
-        </div>
+    <article
+      className="group flex flex-col rounded-lg border border-ink/20 bg-paper p-6 transition-all hover:bg-sky hover:text-paper"
+    >
+      <header className="mb-2 flex items-baseline justify-between gap-3">
+        <span className="font-sans text-sm text-pur transition-colors group-hover:text-paper">0{index + 1} /</span>
+        <span className="shrink-0 text-sm text-ink/50 transition-colors group-hover:text-paper/70">{project.tech.join(" · ")}</span>
+      </header>
+      <div className="flex items-baseline justify-between gap-3">
+        <h3 className="font-sans text-2xl font-semibold text-sky transition-colors group-hover:text-yellow-300">
+          {project.title}
+        </h3>
       </div>
-    </div>
+      <p className="mt-2 mb-5 font-sans text-base leading-relaxed text-ink/80 transition-colors group-hover:text-paper/90">
+        {project.description}
+      </p>
+      <div className="mt-auto flex gap-6 font-sans text-base">
+        <a
+          href={project.github}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-link underline-offset-4 transition-colors group-hover:text-yellow-300 hover:underline"
+        >
+          github ↗
+        </a>
+        <a
+          href={project.live}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-link underline-offset-4 transition-colors group-hover:text-yellow-300 hover:underline"
+        >
+          live ↗
+        </a>
+      </div>
+    </article>
   );
 };
 
 const Projects = () => {
-  const projects = [
-    { 
-      title: "anime-wiki", 
-      description: "A Wikipedia-style anime character encyclopedia built with React + Vite + TypeScript.",
-      tech: "TS · React · Vite",
-      github: "https://github.com/Prawaldev/anime-wiki",
-      live: "https://prawaldev.github.io/anime-wiki/",
-      image: AnimeWiki
-    },
-    { 
-      title: "Pirated Lib", 
-      description: "Curated index of sites and apps for Japanese media — anime, manga, novels.",
-      tech: "HTML · CSS · JS",
-      github: "https://github.com/Prawaldev/pirated-lib",
-      live: "https://prawaldev.github.io/Pirated-Lib/",
-      image: PiratedLib
-    },
-    { 
-      title: "Recipe Finder", 
-      description: "Responsive recipe website — browse meals, view detailed recipes, explore cooking ideas.",
-      tech: "HTML · CSS · JS",
-      github: "https://github.com/Prawaldev/6bpr-recipe",
-      live: "https://prawaldev.github.io/prawal-recipe/",
-      image: RecipeFinder
-    },
-  ];
-
   return (
-    <section id="projects" className="py-20 px-6 border-t border-gray-100">
-      <div className="max-w-6xl mx-auto">
-        <h2 className="text-sm font-bold text-gray-400 uppercase tracking-widest mb-10">Featured Projects</h2>
-        <div className="grid md:grid-cols-2 gap-8">
-          {projects.map((p) => (
-            <ProjectCard key={p.title} {...p} />
-          ))}
-        </div>
+    <section id="projects" className="mx-auto max-w-2xl px-6 py-16">
+      <Reveal>
+        <h2 className="mb-6 font-sans text-2xl font-semibold text-ink">
+          <span className="text-pur">c</span>:: contents
+        </h2>
+      </Reveal>
+      <div className="space-y-6">
+        {projects.map((p, i) => (
+          <Reveal key={p.title}>
+            <ProjectCard project={p} index={i} />
+          </Reveal>
+        ))}
       </div>
     </section>
   );

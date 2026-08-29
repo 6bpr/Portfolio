@@ -1,15 +1,14 @@
 const Navbar = () => {
   return (
-    <nav className="border-b border-gray-200 bg-white sticky top-0 z-50">
-      <div className="max-w-5xl mx-auto flex items-center justify-between p-4">
-        <div className="text-lg font-bold text-gray-900 tracking-tighter">/prawal.dev</div>
-        <div className="space-x-6 text-sm text-gray-600">
-          <a href="#about" className="hover:text-black">about</a>
-          <a href="#projects" className="hover:text-black">projects</a>
-          <a href="#contact" className="hover:text-black">contact</a>
-        </div>
+    <header className="mx-auto max-w-2xl px-6 pt-8">
+      <div className="flex items-center justify-between font-sans text-sm text-ink">
+        <a href="#top" className="text-sky hover:underline">prawaldev</a>
+        <nav className="flex gap-5">
+          <a href="#projects" className="hover:text-sky hover:underline">projects</a>
+          <a href="#accounts" className="hover:text-sky hover:underline">accounts</a>
+        </nav>
       </div>
-    </nav>
+    </header>
   );
 };
 

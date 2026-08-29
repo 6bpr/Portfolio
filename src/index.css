@@ -1,3 +1,59 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    font-size: 18px;
+  }
+
+  body {
+    background-color: theme('colors.paper');
+    background-image: url('/panels/hero-background.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    color: theme('colors.ink');
+    font-family: theme('fontFamily.sans');
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+  }
+
+  @media (max-width: 640px) {
+    body {
+      background-image: url('/panels/hero-background-mobile.jpg');
+      background-attachment: scroll;
+    }
+  }
+
+  ::selection {
+    background-color: theme('colors.sky');
+    color: theme('colors.paper');
+  }
+}
+
+@layer utilities {
+  .skew-left {
+    transform: skew(0deg, -8deg);
+  }
+  .skew-right {
+    transform: skew(0deg, 8deg);
+  }
+  .fade-up {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+  .fade-up.in-view {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes blink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
